@@ -100,8 +100,8 @@ std::vector<const xAOD::Jet*> NaiveConeMatch::GetNCMJets (
    class to classify the selected jets, placing those classified as BJets in a vector of
    jet pointers and those classified as BJets with a Higgs as an origin into another
    vector of jet pointers.*/
-void NaiveConeMatch::ClassifyNCMJets (
-  const std::vector<const xAOD::Jet*> &v, MCTruthClassifier *mcclasstool = nullptr) {
+void NaiveConeMatch::ClassifyNCMJets (const std::vector<const xAOD::Jet*> &v,
+                                      MCTruthClassifier                   *mcclasstool) {
   std::vector<const xAOD::Jet*> conematchedjets;
 
   // if passed m_conematchedjets don't redo NCM
@@ -140,8 +140,7 @@ void NaiveConeMatch::ClassifyNCMJets (
 
 /* Return the number of jets that were used to make m_j1j2 and m_j3j4 that also were
    classified by MCTruthClassifier as BJets with Higgs origin.*/
-Int_t NaiveConeMatch::GetNumberBHClassBuilderJets (
-  MCTruthClassifier *mcclasstool = nullptr) {
+Int_t NaiveConeMatch::GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool) {
   Int_t BHclassifiedbuilderNumber { 0 };
 
   if (mcclasstool != nullptr) {
