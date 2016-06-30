@@ -100,38 +100,39 @@ std::vector<const xAOD::Jet*> NaiveConeMatch::GetNCMJets (
    class to classify the selected jets, placing those classified as BJets in a vector of
    jet pointers and those classified as BJets with a Higgs as an origin into another
    vector of jet pointers.*/
-void NaiveConeMatch::ClassifyNCMJets (const std::vector<const xAOD::Jet*> &v,
-                                      MCTruthClassifier                   *mcclasstool)
-{
+void NaiveConeMatch::ClassifyNCMJets (
+  const std::vector<const xAOD::Jet*> &v, MCTruthClassifier *mcclasstool = nullptr) {
   std::vector<const xAOD::Jet*> conematchedjets;
 
   // if passed m_conematchedjets don't redo NCM
   if (&v == &m_conematchedjets) conematchedjets = v;
   else conematchedjets = GetNCMJets(v);
 
-  m_Bclassifiedjets.clear();
-  m_Hclassifiedjets.clear();
-  m_jheritage.clear();
+  if (mcclasstool != nullptr) {
+    m_Bclassifiedjets.clear();
+    m_Hclassifiedjets.clear();
+    m_jheritage.clear();
 
-  m_BclassifiedNumber = 0;
-  m_HclassifiedNumber = 0;
+    m_BclassifiedNumber = 0;
+    m_HclassifiedNumber = 0;
 
-  std::pair<MCTruthPartClassifier::ParticleType,
-            MCTruthPartClassifier::ParticleOrigin> classifyResult;
+    std::pair<MCTruthPartClassifier::ParticleType,
+              MCTruthPartClassifier::ParticleOrigin> classifyResult;
 
-  for (const auto &jet_itr : conematchedjets) {
-    classifyResult = mcclasstool->particleTruthClassifier(jet_itr, true);
+    for (const auto &jet_itr : conematchedjets) {
+      classifyResult = mcclasstool->particleTruthClassifier(jet_itr, true);
 
-    if (classifyResult.first == MCTruthPartClassifier::BJet) {
-      ++m_BclassifiedNumber;
-      m_Bclassifiedjets.push_back(jet_itr);
+      if (classifyResult.first == MCTruthPartClassifier::BJet) {
+        ++m_BclassifiedNumber;
+        m_Bclassifiedjets.push_back(jet_itr);
 
-      if (classifyResult.second == MCTruthPartClassifier::Higgs) {
-        ++m_HclassifiedNumber;
-        m_Hclassifiedjets.push_back(jet_itr);
+        if (classifyResult.second == MCTruthPartClassifier::Higgs) {
+          ++m_HclassifiedNumber;
+          m_Hclassifiedjets.push_back(jet_itr);
 
-        if (mcclasstool->getMotherPDG() == 25) m_jheritage.emplace_back(
-            jet_itr, mcclasstool->getMotherBarcode());
+          if (mcclasstool->getMotherPDG() == 25) m_jheritage.emplace_back(
+              jet_itr, mcclasstool->getMotherBarcode());
+        }
       }
     }
   }
@@ -139,19 +140,22 @@ void NaiveConeMatch::ClassifyNCMJets (const std::vector<const xAOD::Jet*> &v,
 
 /* Return the number of jets that were used to make m_j1j2 and m_j3j4 that also were
    classified by MCTruthClassifier as BJets with Higgs origin.*/
-Int_t NaiveConeMatch::GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool) {
+Int_t NaiveConeMatch::GetNumberBHClassBuilderJets (
+  MCTruthClassifier *mcclasstool = nullptr) {
   Int_t BHclassifiedbuilderNumber { 0 };
 
-  std::pair<MCTruthPartClassifier::ParticleType,
-            MCTruthPartClassifier::ParticleOrigin> classifyResult;
+  if (mcclasstool != nullptr) {
+    std::pair<MCTruthPartClassifier::ParticleType,
+              MCTruthPartClassifier::ParticleOrigin> classifyResult;
 
-  if (m_mjjbuilderjets.size() > 0) {
-    for (const auto &jet_itr : m_mjjbuilderjets) {
-      classifyResult = mcclasstool->particleTruthClassifier(jet_itr, true);
+    if (m_mjjbuilderjets.size() > 0) {
+      for (const auto &jet_itr : m_mjjbuilderjets) {
+        classifyResult = mcclasstool->particleTruthClassifier(jet_itr, true);
 
-      if ((classifyResult.first == MCTruthPartClassifier::BJet) &&
-          (classifyResult.second ==
-           MCTruthPartClassifier::Higgs)) ++BHclassifiedbuilderNumber;
+        if ((classifyResult.first == MCTruthPartClassifier::BJet) &&
+            (classifyResult.second ==
+             MCTruthPartClassifier::Higgs)) ++BHclassifiedbuilderNumber;
+      }
     }
   }
 

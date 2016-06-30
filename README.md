@@ -38,13 +38,13 @@ An ATLAS analysis package built around the `NaiveConeMatch` class
   * Return the number of NCM passing jets that have been classified as BJEt
 * `Int_t GetNumberHClass ()`
   * Return the number of NCM passing jets that have been classified as having origin on Higgs
-* `Int_t GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool)`
+* `Int_t GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool = nullptr)`
   * Return the number of NCM BJet and Higgs classified jets that were used to build the objects j1j2 and j3j4
 * `Int_t GetNumberPairedJets ()`
   * Return the number of jets (not pairs) whose parent is the same as another selected jet (the parents barcodes match)
 * `std::vector<const xAOD::Jet*> GetNCMJets (const std::vector<const xAOD::Jet*> &v)`
   * Return a vector of pointers to jets that pass the NCM selection
-* `void ClassifyNCMJets (const std::vector<const xAOD::Jet*> &v, MCTruthClassifier *mcclasstool)`
+* `void ClassifyNCMJets (const std::vector<const xAOD::Jet*> &v, MCTruthClassifier *mcclasstool = nullptr)`
   * Apply `GetNCMJets` to a vector of pointers to jets (if not already done) and apply the `MCTruthClassifier` to the jets that pass the NCM
 * `std::vector<const xAOD::Jet*> GetMjjBuilderJets ()`
   * Return a vector of pointers to jets that were used to build the objects j1j2 and j3j4
