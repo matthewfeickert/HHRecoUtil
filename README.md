@@ -10,7 +10,7 @@ An ATLAS analysis package built around the `NaiveConeMatch` class
    * Constructor
 * `NaiveConeMatch (Double_t mPole, Double_t mWidth)`
    * Constructor
-* `NaiveConeMatch (Double_t partnerConeR, Double_t mPole, Double_t mWidth, Double_t gammagammaCone)`
+* `NaiveConeMatch (Double_t partnerConeR, Double_t mPole, Double_t mWidth, Double_t firstHiggsCone)`
    * Constructor
 * `~NaiveConeMatch ()`
    * Destructor
@@ -20,7 +20,7 @@ An ATLAS analysis package built around the `NaiveConeMatch` class
   * Return the mean of the mass window for the m_j1j2 mass cut
 * `Double_t GetMWidth ()`
   * Return the half width of the mass window for the m_j1j2 mass cut (FWMH/2)
-* `Double_t GetGammaGammaCone ()`
+* `Double_t GetFirstHiggsCone ()`
   * Return the R of the cone built around the inverse direction of the object formed from j1 and j2
 * `Double_t GetMj1j2Cone ()`
   * Return the invariant mass of the object formed from j1 and j2

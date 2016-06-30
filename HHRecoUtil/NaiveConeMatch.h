@@ -19,7 +19,7 @@ private:
         Double_t m_partnerConeR;
         Double_t m_mPole;
         Double_t m_mWidth;
-        Double_t m_gammagammaCone;
+        Double_t m_firstHiggsCone;
         Double_t m_m_j1j2_cone { -999999. };
         Double_t m_m_j1j2_cone_massCut { -999999. };
         Double_t m_m_j3j4_cone { -999999. };
@@ -43,8 +43,8 @@ private:
         void SetMWidth (const Double_t &m) {
                 m_mWidth = m;
         }
-        void SetGammaGammaCone (const Double_t &R) {
-                m_gammagammaCone = R;
+        void SetFirstHiggsCone (const Double_t &R) {
+                m_firstHiggsCone = R;
         }
         void SetMj1j2Cone (const Double_t &m) {
                 m_m_j1j2_cone = m;
@@ -64,7 +64,7 @@ public:
         NaiveConeMatch (Double_t partnerConeR);
         NaiveConeMatch (Double_t mPole, Double_t mWidth);
         NaiveConeMatch (Double_t partnerConeR, Double_t mPole, Double_t mWidth,
-                        Double_t gammagammaCone);
+                        Double_t firstHiggsCone);
         ~NaiveConeMatch ();
 
         Double_t GetPartnerConeR () {
@@ -76,8 +76,8 @@ public:
         Double_t GetMWidth (){
                 return m_mWidth;
         }
-        Double_t GetGammaGammaCone () {
-                return m_gammagammaCone;
+        Double_t GetFirstHiggsCone () {
+                return m_firstHiggsCone;
         }
         Double_t GetMj1j2Cone (){
                 return m_m_j1j2_cone;

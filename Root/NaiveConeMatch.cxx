@@ -5,7 +5,7 @@ NaiveConeMatch::NaiveConeMatch () {
   SetPartnerConeR(3.0);
   SetMPole(120.);
   SetMWidth(20.);
-  SetGammaGammaCone(3.0);
+  SetFirstHiggsCone(3.0);
 }
 
 NaiveConeMatch::NaiveConeMatch (Double_t partnerConeR) : NaiveConeMatch() {
@@ -21,11 +21,11 @@ NaiveConeMatch::NaiveConeMatch (Double_t mPole,
 NaiveConeMatch::NaiveConeMatch (Double_t partnerConeR,
                                 Double_t mPole,
                                 Double_t mWidth,
-                                Double_t gammagammaCone) {
+                                Double_t firstHiggsCone) {
   SetPartnerConeR(partnerConeR);
   SetMPole(mPole);
   SetMWidth(mWidth);
-  SetGammaGammaCone(gammagammaCone);
+  SetFirstHiggsCone(firstHiggsCone);
 }
 
 // destructor
@@ -75,7 +75,7 @@ std::vector<const xAOD::Jet*> NaiveConeMatch::GetNCMJets (
 
           for (const auto &jet_itr : searchjets) {
             if (higgsDirection.DeltaR(
-                  jet_itr->p4()) < m_gammagammaCone) m_conematchedjets.push_back(jet_itr);
+                  jet_itr->p4()) < m_firstHiggsCone) m_conematchedjets.push_back(jet_itr);
           }
 
           if (m_conematchedjets.size() > 3) {
