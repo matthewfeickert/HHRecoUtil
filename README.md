@@ -22,13 +22,13 @@ An ATLAS analysis package built around the `NaiveConeMatch` class
   * Return the half width of the mass window for the m_j1j2 mass cut (FWMH/2)
 * `Double_t GetGammaGammaCone ()`
   * Return the R of the cone built around the inverse direction of the object formed from j1 and j2
-* `GetMj1j2Cone ()`
+* `Double_t GetMj1j2Cone ()`
   * Return the invariant mass of the object formed from j1 and j2
-* `GetMj1j2Cut ()`
+* `Double_t GetMj1j2Cut ()`
   * Return the invariant mass of the object formed from j1 and j2 if the mass lies in the mass window
-* `GetMj3j4Cone ()`
+* `Double_t GetMj3j4Cone ()`
   * Return the invariant mass of the object formed from j3 and j4
-* `GetMj3j4Cut ()`
+* `Double_t GetMj3j4Cut ()`
   * Return the invariant mass of the object formed from j3 and j4 if the mass lies in the mass window
 * `std::vector<const xAOD::Jet*> GetBClassJets ()`
   * Return a vector of pointers to NCM passing jets that have been classified as BJEt
