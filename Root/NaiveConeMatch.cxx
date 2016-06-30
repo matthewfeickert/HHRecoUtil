@@ -139,7 +139,7 @@ void NaiveConeMatch::ClassifyNCMJets (const std::vector<const xAOD::Jet*> &v,
 
 /* Return the number of jets that were used to make m_j1j2 and m_j3j4 that also were
    classified by MCTruthClassifier as BJets with Higgs origin.*/
-Int_t NaiveConeMatch::GetNumberBHClassBuiderJets (MCTruthClassifier *mcclasstool) {
+Int_t NaiveConeMatch::GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool) {
   Int_t BHclassifiedbuilderNumber { 0 };
 
   std::pair<MCTruthPartClassifier::ParticleType,
@@ -156,7 +156,7 @@ Int_t NaiveConeMatch::GetNumberBHClassBuiderJets (MCTruthClassifier *mcclasstool
   }
 
   return BHclassifiedbuilderNumber;
-} // GetNumberBHClassBuiderJets
+} // GetNumberBHClassBuilderJets
 
 /* Return the number of jets that were classified as BJets with Higgs origin that were
    matched with a jet that comes from the same parent Higgs (and so has formed a

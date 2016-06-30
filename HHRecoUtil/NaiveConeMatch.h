@@ -103,7 +103,7 @@ public:
         Int_t GetNumberHClass() {
                 return m_HclassifiedNumber;
         }
-        Int_t GetNumberBHClassBuiderJets (MCTruthClassifier *mcclasstool);
+        Int_t GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool);
         Int_t GetNumberPairedJets ();
 
         std::vector<const xAOD::Jet*> GetNCMJets (const std::vector<const xAOD::Jet*> &v);

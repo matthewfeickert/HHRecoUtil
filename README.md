@@ -9,13 +9,13 @@ An ATLAS analysis package built around the `NaiveConeMatch` class
 * `NaiveConeMatch (Double_t partnerConeR)`
    * Constructor
 * `NaiveConeMatch (Double_t mPole, Double_t mWidth)`
-   * Constructor 
+   * Constructor
 * `NaiveConeMatch (Double_t partnerConeR, Double_t mPole, Double_t mWidth, Double_t gammagammaCone)`
-   * Constructor 
+   * Constructor
 * `~NaiveConeMatch ()`
-   * Destructor 
+   * Destructor
 * `Double_t GetPartnerConeR ()`
-  * Return the R of the cone searched in to find the partner jet of the leading pT jet 
+  * Return the R of the cone searched in to find the partner jet of the leading pT jet
 * `Double_t GetMPole ()`
   * Return the mean of the mass window for the m_j1j2 mass cut
 * `Double_t GetMWidth ()`
@@ -38,7 +38,7 @@ An ATLAS analysis package built around the `NaiveConeMatch` class
   * Return the number of NCM passing jets that have been classified as BJEt
 * `Int_t GetNumberHClass ()`
   * Return the number of NCM passing jets that have been classified as having origin on Higgs
-* `Int_t GetNumberBHClassBuiderJets (MCTruthClassifier *mcclasstool)`
+* `Int_t GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool)`
   * Return the number of NCM BJet and Higgs classified jets that were used to build the objects j1j2 and j3j4
 * `Int_t GetNumberPairedJets ()`
   * Return the number of jets (not pairs) whose parent is the same as another selected jet (the parents barcodes match)
@@ -76,7 +76,7 @@ EL::StatusCode MyAnalysis::histInitialize () {
   // ...
 
   mcclasstool = new MCTruthClassifier("mcclasstool");
-  
+
   // ...
   return EL::StatusCode::SUCCESS;
 }
@@ -84,9 +84,9 @@ EL::StatusCode MyAnalysis::histInitialize () {
 In the body of your analysis use it to fill branches for your output TTree:
 ```C++
   std::vector<const xAOD::Jet*> fiducialjets;
-  
+
   // ... fill fiducialjets ...
-  
+
   NaiveConeMatch MyNCM;
   MyNCM.ClassifyNCMJets(fiducialjets, mcclasstool);
   m_j1j2_cone         = MyNCM.GetMj1j2Cone();
@@ -97,7 +97,7 @@ In the body of your analysis use it to fill branches for your output TTree:
   if (m_j1j2_cone_massCut > 0) {
     conematchedNumber      = MyNCM.GetNumberBClass();
     conematchedHiggsNumber = MyNCM.GetNumberHClass();
-    massbuildNumber        = MyNCM.GetNumberBHClassBuiderJets(m_mcclasstool);
+    massbuildNumber        = MyNCM.GetNumberBHClassBuilderJets(m_mcclasstool);
     pairedjetNumber        = MyNCM.GetNumberPairedJets(); // number of jets with pair, not number of pairs
   }
 ```
