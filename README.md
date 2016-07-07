@@ -40,8 +40,8 @@ An ATLAS analysis package built around the `NaiveConeMatch` class
   * Return the number of NCM passing jets that have been classified as having origin on Higgs
 * `Int_t GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool = nullptr)`
   * Return the number of NCM BJet and Higgs classified jets that were used to build the objects j1j2 and j3j4
-* `Int_t GetNumberPairedJets ()`
-  * Return the number of jets (not pairs) whose parent is the same as another selected jet (the parents barcodes match)
+* `Int_t GetNumberJetPairs ()`
+  * Return the number of jets pairs where both jets' parent is the same as another NCM BJet and Higgs classified jet
 * `std::vector<const xAOD::Jet*> GetNCMJets (const std::vector<const xAOD::Jet*> &v)`
   * Return a vector of pointers to jets that pass the NCM selection
 * `void ClassifyNCMJets (const std::vector<const xAOD::Jet*> &v, MCTruthClassifier *mcclasstool = nullptr)`
@@ -98,7 +98,7 @@ In the body of your analysis use it to fill branches for your output TTree:
     conematchedNumber      = MyNCM.GetNumberBClass();
     conematchedHiggsNumber = MyNCM.GetNumberHClass();
     massbuildNumber        = MyNCM.GetNumberBHClassBuilderJets(m_mcclasstool);
-    pairedjetNumber        = MyNCM.GetNumberPairedJets(); // number of jets with pair, not number of pairs
+    jetpairNumber          = MyNCM.GetNumberJetPairs();
   }
 ```
 **In the steering file in your `util` dir:**
