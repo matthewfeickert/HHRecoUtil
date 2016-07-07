@@ -161,20 +161,17 @@ Int_t NaiveConeMatch::GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstoo
   return BHclassifiedbuilderNumber;
 } // GetNumberBHClassBuilderJets
 
-/* Return the number of jets that were classified as BJets with Higgs origin that were
-   matched with a jet that comes from the same parent Higgs (and so has formed a
-   correct pair).*/
-Int_t NaiveConeMatch::GetNumberPairedJets () {
-  Int_t jetswithpairsNumber { 0 }; // number of jets with pair, not number of pairs
+/* Return the number of pairs of jets where both jets were classified as BJets with
+   Higgs origin and matched with a jet that comes from the same parent Higgs (and so has
+   formed a correct pair).*/
+Int_t NaiveConeMatch::GetNumberJetPairs () {
+  Int_t jetpairNumber { 0 };
 
   if (m_jheritage.size() > 0) {
-    for (UInt_t i = 0; i < m_jheritage.size(); ++i) {
-      for (UInt_t j = 0; j < m_jheritage.size(); ++j) {
-        if ((m_jheritage[i] != m_jheritage[j]) &&
-            (m_jheritage[i].second == m_jheritage[j].second)) ++jetswithpairsNumber;
-      }
-    }
+    for (UInt_t i = 0; i < m_jheritage.size(); ++i)
+      for (UInt_t j = 0; j < m_jheritage.size(); ++j)
+        if ((j > i) && (m_jheritage[i].second == m_jheritage[j].second)) ++jetpairNumber;
   }
 
-  return jetswithpairsNumber;
-} // GetNumberPairedJets
+  return jetpairNumber;
+} // GetNumberJetPairs

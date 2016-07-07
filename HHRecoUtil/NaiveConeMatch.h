@@ -104,7 +104,7 @@ public:
                 return m_HclassifiedNumber;
         }
         Int_t GetNumberBHClassBuilderJets (MCTruthClassifier *mcclasstool = nullptr);
-        Int_t GetNumberPairedJets ();
+        Int_t GetNumberJetPairs ();
 
         std::vector<const xAOD::Jet*> GetNCMJets (const std::vector<const xAOD::Jet*> &v);
 
