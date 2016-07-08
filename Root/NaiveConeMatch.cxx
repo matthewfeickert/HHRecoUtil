@@ -169,8 +169,8 @@ Int_t NaiveConeMatch::GetNumberJetPairs () {
 
   if (m_jheritage.size() > 0) {
     for (UInt_t i = 0; i < m_jheritage.size(); ++i)
-      for (UInt_t j = 0; j < m_jheritage.size(); ++j)
-        if ((j > i) && (m_jheritage[i].second == m_jheritage[j].second)) ++jetpairNumber;
+      for (UInt_t j = i + 1; j < m_jheritage.size(); ++j)
+        if (m_jheritage[i].second == m_jheritage[j].second) ++jetpairNumber;
   }
 
   return jetpairNumber;
